@@ -90,12 +90,12 @@ function App() {
             />
           </Route>
           <Route exact path="/checkout">
-            <Checkout 
+            <Checkout
               cart={cart}
               order={order}
               onCaptureCheckout={handleCaptureCheckout}
               error={errorMessage}
-              
+              handleEmptyCart={handleEmptyCart}
             />
           </Route>
         </Switch>

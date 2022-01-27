@@ -16,6 +16,8 @@ const PaymentForm = ({
   backStep,
   onCaptureCheckout,
   nextStep,
+  timeout,
+  handleEmptyCart,
 }) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
@@ -57,7 +59,8 @@ const PaymentForm = ({
       };
 
       onCaptureCheckout(checkoutToken.id, orderData);
-
+      timeout();
+      handleEmptyCart();
       nextStep();
     }
   };
@@ -71,9 +74,7 @@ const PaymentForm = ({
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
           {({ elements, stripe }) => (
-            <form
-            onSubmit={(e) => handleSubmit(e, elements, stripe)}
-            >
+            <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
               <CardElement />
               <br /> <br />
               <div style={{ display: "flex", justifyContent: "space-between" }}>
